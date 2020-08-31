@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000">
+
+        <LinearLayout
+            android:id="@+id/lnrOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ibtnUndo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/undo"
+                android:tint="#ffffff" />
+
+            <ImageButton
+                android:id="@+id/ibtnRedo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/redo"
+                android:tint="#ffffff" />
+
+            <ImageButton
+                android:id="@+id/ibtnBold"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/bold"
+                android:tint="#ffffff" />
+
+            <ImageButton
+                android:id="@+id/ibtnItalic"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/italic"
+                android:tint="#ffffff" />
+
+            <ImageButton
+                android:id="@+id/ibtnUnderline"
+
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/underline"
+                android:tint="#ffffff" />
+
+            <ImageButton
+                android:id="@+id/ibtnSubScript"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/subscript"
+                android:tint="#ffffff" />
+
+            <ImageButton
+                android:id="@+id/ibtnSuperScript"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/superscript"
+                android:tint="#ffffff" />
+
+
+            <ImageButton
+                android:id="@+id/ibtnStrike"
+
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/strikethrough"
+                android:tint="#ffffff" />
+
+            <ImageButton
+                android:id="@+id/ibtnNumberList"
+
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/numbers"
+                android:tint="#ffffff" />
+
+            <ImageButton
+                android:id="@+id/ibtnBulletList"
+
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/bullets" />
+
+            <ImageButton
+                android:id="@+id/ibtnTextColor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/txt_color" />
+
+            <ImageButton
+                android:id="@+id/ibtnBGColor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/bg_color" />
+
+            <ImageButton
+                android:id="@+id/ibtnLink"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/insert_link"
+                android:tint="#ffffff" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <jp.wasabeef.richeditor.RichEditor
+        android:id="@+id/richEditor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp" />
+
+</LinearLayout>
