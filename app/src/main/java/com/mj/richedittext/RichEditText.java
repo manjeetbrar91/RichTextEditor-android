@@ -3,6 +3,7 @@ package com.mj.richedittext;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -13,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import jp.wasabeef.richeditor.RichEditor;
+import top.defaults.colorpicker.ColorPickerPopup;
 
 public class RichEditText extends LinearLayout implements View.OnClickListener {
     private Context context;
@@ -53,6 +55,9 @@ public class RichEditText extends LinearLayout implements View.OnClickListener {
         richEditor = view.findViewById(R.id.richEditor);
         richEditor.setEditorHeight(200);
         lnrOptions = view.findViewById(R.id.lnrOptions);
+        richEditor.setTextColor(textColor);
+        richEditor.setTextBackgroundColor(textBackgroundColor);
+        richEditor.setPlaceholder("Type your text...");
         int childCount = lnrOptions.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = lnrOptions.getChildAt(i);
@@ -61,6 +66,7 @@ public class RichEditText extends LinearLayout implements View.OnClickListener {
                 childAt.setTag(0);
             }
         }
+        richEditor.focusEditor();
         addView(view);
     }
 
@@ -78,95 +84,70 @@ public class RichEditText extends LinearLayout implements View.OnClickListener {
         } else {
             view.setTag(1);
         }
-        switch (view.getId()) {
-
-            case R.id.ibtnUndo: {
-                richEditor.undo();
-                changeButtonColor(view);
-                break;
+        int id = view.getId();
+        if (id == R.id.ibtnUndo) {
+            richEditor.undo();
+            changeButtonColor(view);
+        } else if (id == R.id.ibtnRedo) {
+            richEditor.redo();
+            changeButtonColor(view);
+        } else if (id == R.id.ibtnBold) {
+            richEditor.setBold();
+            changeButtonColor(view);
+        } else if (id == R.id.ibtnItalic) {
+            richEditor.setItalic();
+            changeButtonColor(view);
+        } else if (id == R.id.ibtnUnderline) {
+            richEditor.setUnderline();
+            changeButtonColor(view);
+        } else if (id == R.id.ibtnStrike) {
+            richEditor.setStrikeThrough();
+            changeButtonColor(view);
+        } else if (id == R.id.ibtnSubScript) {
+            richEditor.setSubscript();
+            changeButtonColor(view);
+        } else if (id == R.id.ibtnSuperScript) {
+            richEditor.setSuperscript();
+            changeButtonColor(view);
+        } else if (id == R.id.ibtnNumberList) {
+            richEditor.setNumbers();
+            changeButtonColor(view);
+        } else if (id == R.id.ibtnBulletList) {
+            richEditor.setBullets();
+            changeButtonColor(view);
+        } else if (id == R.id.ibtnTextColor) {
+            if (view instanceof ImageButton) {
+                selectColor((ImageButton) view, textColor);
             }
-
-            case R.id.ibtnRedo: {
-                richEditor.redo();
-                changeButtonColor(view);
-                break;
+        } else if (id == R.id.ibtnBGColor) {//richEditor.setTextBackgroundColor(Color.BLACK);
+            if (view instanceof ImageButton) {
+                selectColor((ImageButton) view, textBackgroundColor);
             }
-            case R.id.ibtnBold: {
-                richEditor.setBold();
-                changeButtonColor(view);
-                break;
-            }
-
-            case R.id.ibtnItalic: {
-                richEditor.setItalic();
-                changeButtonColor(view);
-                break;
-            }
-
-            case R.id.ibtnUnderline: {
-                richEditor.setUnderline();
-                changeButtonColor(view);
-                break;
-            }
-
-            case R.id.ibtnStrike: {
-                richEditor.setStrikeThrough();
-                changeButtonColor(view);
-                break;
-            }
-            case R.id.ibtnSubScript: {
-                richEditor.setSubscript();
-                changeButtonColor(view);
-                break;
-            }
-
-            case R.id.ibtnSuperScript: {
-                richEditor.setSuperscript();
-                changeButtonColor(view);
-                break;
-            }
-
-            case R.id.ibtnNumberList: {
-                richEditor.setNumbers();
-                changeButtonColor(view);
-                break;
-            }
-
-            case R.id.ibtnBulletList: {
-                richEditor.setBullets();
-                changeButtonColor(view);
-                break;
-            }
-
-            case R.id.ibtnTextColor: {
-                richEditor.setTextColor(Color.RED);
-                break;
-            }
-            case R.id.ibtnBGColor: {
-                richEditor.setTextBackgroundColor(Color.BLACK);
-                break;
-            }
-            case R.id.ibtnLink: {
-                insertLink();
-                changeButtonColor(view);
-                break;
-            }
-
-
+        } else if (id == R.id.ibtnLink) {
+            insertLink();
+            changeButtonColor(view);
         }
 
+    }
+
+    public void setHint(String placeholder) {
+        richEditor.setPlaceholder(placeholder);
     }
 
     public String getText() {
         return richEditor.getHtml();
     }
 
-    public void setText(String htmlText) {
-        richEditor.setHtml(htmlText);
+    public void setMinimumHeight(int px) {
+        richEditor.setEditorHeight(px);
+    }
+
+    public void setText(String text) {
+        richEditor.setHtml(text);
 
     }
 
-    void setOnTextChangeListener(RichEditor.OnTextChangeListener listener) {
+    public void setOnTextChangeListener(RichEditor.OnTextChangeListener listener) {
         richEditor.setOnTextChangeListener(listener);
     }
 
@@ -210,6 +191,38 @@ public class RichEditText extends LinearLayout implements View.OnClickListener {
         alertDialog.show();
 
 
+    }
+
+    private int textColor = Color.BLACK;
+    private int textBackgroundColor = Color.WHITE;
+
+    private void selectColor(final ImageButton v, int initialColor) {
+
+        new ColorPickerPopup.Builder(context)
+                // .initialColor(initialColor) // Set initial color
+                .enableBrightness(true) // Enable brightness slider or not
+                .enableAlpha(true) // Enable alpha slider or not
+                .okTitle("OK")
+                .cancelTitle("CANCEL")
+                .showIndicator(true)
+                .showValue(false)
+                .build()
+                .show(new ColorPickerPopup.ColorPickerObserver() {
+
+                    @Override
+                    public void onColorPicked(int color) {
+                        v.setImageTintList(ColorStateList.valueOf(color));
+                        if (v.getId() == R.id.ibtnTextColor) {
+                            textColor = color;
+                            richEditor.setTextColor(color);
+                        }
+                        if (v.getId() == R.id.ibtnBGColor) {
+                            textBackgroundColor = color;
+                            richEditor.setTextBackgroundColor(color);
+                        }
+                    }
+
+                });
     }
 
     private void changeButtonColor(View view) {

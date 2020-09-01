@@ -17,12 +17,23 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:contentDescription="Attach Link"
+                android:id="@+id/ibtnLink"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/insert_link"
+                android:tint="#ffffff" />
+
+            <ImageButton
+
                 android:id="@+id/ibtnUndo"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/undo"
-                android:tint="#ffffff" />
+                android:tint="#ffffff"
+                android:visibility="gone" />
 
             <ImageButton
                 android:id="@+id/ibtnRedo"
@@ -30,9 +41,11 @@
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/redo"
-                android:tint="#ffffff" />
+                android:tint="#ffffff"
+                android:visibility="gone" />
 
             <ImageButton
+                android:contentDescription="Bold"
                 android:id="@+id/ibtnBold"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -41,6 +54,7 @@
                 android:tint="#ffffff" />
 
             <ImageButton
+                android:contentDescription="Italic"
                 android:id="@+id/ibtnItalic"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -49,6 +63,7 @@
                 android:tint="#ffffff" />
 
             <ImageButton
+                android:contentDescription="Underline"
                 android:id="@+id/ibtnUnderline"
 
                 android:layout_width="40dp"
@@ -58,30 +73,34 @@
                 android:tint="#ffffff" />
 
             <ImageButton
+                android:contentDescription="Number List"
                 android:id="@+id/ibtnSubScript"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/subscript"
-                android:tint="#ffffff" />
+                android:tint="#ffffff"
+                android:visibility="gone" />
 
             <ImageButton
+                android:contentDescription="Bullet List"
                 android:id="@+id/ibtnSuperScript"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/superscript"
-                android:tint="#ffffff" />
+                android:tint="#ffffff"
+                android:visibility="gone" />
 
 
             <ImageButton
                 android:id="@+id/ibtnStrike"
-
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/strikethrough"
-                android:tint="#ffffff" />
+                android:tint="#ffffff"
+                android:visibility="gone" />
 
             <ImageButton
                 android:id="@+id/ibtnNumberList"
@@ -114,13 +133,6 @@
                 android:background="@android:color/transparent"
                 android:src="@drawable/bg_color" />
 
-            <ImageButton
-                android:id="@+id/ibtnLink"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/insert_link"
-                android:tint="#ffffff" />
 
         </LinearLayout>
     </HorizontalScrollView>
