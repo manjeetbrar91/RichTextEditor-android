@@ -13,6 +13,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final RichEditText findViewById = findViewById(R.id.preview);
         RichEditText mainEditor = findViewById(R.id.mainEditor);
+        mainEditor.setHint("Start typing");
+        String text = mainEditor.getText();
+        mainEditor.setText("xxxxx");
+        mainEditor.showMenuBar();
+        mainEditor.hideMenuBar();
+        mainEditor.setMinimumHeight(200);
         findViewById.setReadOnly(true);
         findViewById.hideMenuBar();
         mainEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
